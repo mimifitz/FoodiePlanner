@@ -8,7 +8,7 @@
 
 Run `yarn` on root folder to install dependencies related to Express.
 
-cd `client` and run yarn install dependencies related to React.
+cd `client` and run `yarn install` dependencies related to React.
 
 ### Run Your Development Servers
 

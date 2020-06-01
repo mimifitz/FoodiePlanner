@@ -18,7 +18,8 @@ class mealPlanner extends React.Component {
 
   componentDidMount() {
     let imgExt = [];
-    for (let i = 0; i < this.state.recipes.length; i++) {
+    for (let i = 0; i < this.state.recipes.length; i++)
+    {
       let ext = this.state.recipes[i].image.split(".").pop();
       imgExt.push(ext);
     }

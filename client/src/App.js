@@ -26,7 +26,7 @@ export default function App() {
             <Link to="/" style={{ textDecoration: "none" }}>
               <Typography style={{ color: "white" }} variant="h2">
                 <Box letterSpacing={4} m={2}>
-                  Foodie Planner
+                  FoodiePlanner
                 </Box>
               </Typography>
             </Link>

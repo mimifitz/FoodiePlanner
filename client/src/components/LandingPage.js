@@ -67,22 +67,26 @@ export default class LandingPage extends Component {
   };
 
   submit() {
-    if (this.state.eggValue === true) {
+    if (this.state.eggValue === true)
+    {
       this.setState({
         intolerances: "egg",
       });
     }
-    if (this.state.dairyValue === true) {
+    if (this.state.dairyValue === true)
+    {
       this.setState({
         intolerances: "dairy",
       });
     }
-    if (this.state.glutenValue === true) {
+    if (this.state.glutenValue === true)
+    {
       this.setState({
         intolerances: "gluten",
       });
     }
-    if (this.state.eggValue === true && this.state.dairyValue === true) {
+    if (this.state.eggValue === true && this.state.dairyValue === true)
+    {
       this.setState({
         intolerances: "egg, dairy",
       });
@@ -91,35 +95,42 @@ export default class LandingPage extends Component {
       this.state.eggValue === true &&
       this.state.dairyValue === true &&
       this.state.glutenValue === true
-    ) {
+    )
+    {
       this.setState({
         intolerances: "egg, dairy, gluten",
       });
     }
-    if (this.state.eggValue === true && this.state.glutenValue === true) {
+    if (this.state.eggValue === true && this.state.glutenValue === true)
+    {
       this.setState({
         intolerances: "egg, gluten",
       });
     }
-    if (this.state.dairyValue === true && this.state.glutenValue === true) {
+    if (this.state.dairyValue === true && this.state.glutenValue === true)
+    {
       this.setState({
         intolerances: "dairy, gluten",
       });
     }
-    if (!this.state.excludeIngredientsValue) {
+    if (!this.state.excludeIngredientsValue)
+    {
       this.setState({
         excludeIngredients: 0,
       });
-    } else {
+    } else
+    {
       this.setState({
         excludeIngredients: this.state.excludeIngredientValue,
       });
     }
-    if (!this.state.excludeCuisineValue) {
+    if (!this.state.excludeCuisineValue)
+    {
       this.setState({
         cuisine: 0,
       });
-    } else {
+    } else
+    {
       this.setState({
         cuisine: this.state.cuisineValue,
       });
@@ -155,7 +166,7 @@ export default class LandingPage extends Component {
               <Paper>
                 <Box p={3}>
                   <Typography variant="h4">
-                    Create your weekly meal planner
+                    Your Meal Planer
                   </Typography>
                   <hr />
                   <div>
@@ -339,7 +350,7 @@ export default class LandingPage extends Component {
               <br />
               <Paper>
                 <Box p={3}>
-                  <Typography variant="h4">Get recipe ideas</Typography>
+                  <Typography variant="h4">Recipe Ideas</Typography>
                   <hr />
                   <div>
                     <div>
@@ -350,7 +361,7 @@ export default class LandingPage extends Component {
                               style={{ color: "rgb(33, 48, 55)" }}
                               variant="h6"
                             >
-                              Add a list of ingredients
+                              Add Your Ingredients
                             </Typography>
                           </FormLabel>
                           <br />
