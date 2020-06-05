@@ -43,13 +43,16 @@ class RecipeInstructions extends React.Component {
         this.setState({ recipe: response });
 
         let steps = [];
-        if (this.state.recipe.analyzedInstructions[0]) {
+        if (this.state.recipe.analyzedInstructions[0])
+        {
           let arrayOfSteps = this.state.recipe.analyzedInstructions[0].steps;
-          for (let i = 0; i < arrayOfSteps.length; i++) {
+          for (let i = 0; i < arrayOfSteps.length; i++)
+          {
             steps.push(arrayOfSteps[i].step);
           }
           this.setState({ analyzedInstructions: steps });
-        } else {
+        } else
+        {
           let summary = this.state.recipe.summary;
           this.setState({ summary: summary });
         }
@@ -114,14 +117,14 @@ class RecipeInstructions extends React.Component {
                                 {!this.state.analyzedInstructions
                                   ? this.state.summary
                                   : this.state.analyzedInstructions.map(
-                                      (step, index) => (
-                                        <div key={index}>
-                                          <ol>
-                                            {index + 1}. {step}
-                                          </ol>
-                                        </div>
-                                      )
-                                    )}
+                                    (step, index) => (
+                                      <div key={index}>
+                                        <ol>
+                                          {index + 1}. {step}
+                                        </ol>
+                                      </div>
+                                    )
+                                  )}
                               </div>
                             </Typography>
                           </div>
@@ -164,6 +167,27 @@ class RecipeInstructions extends React.Component {
           </Grid>
         </Container>
       </div>
+      // <div>
+      <Link
+        to={{
+          pathname: "/shopping-list",
+          state: {
+            recipesPlanner: this.state.recipes,
+          },
+        }}
+        style={{ textDecoration: "none" }}
+      >
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: "rgb(43, 137, 139)",
+            color: "white",
+          }}
+        >
+          Get Shopping List
+                </Button>
+      </Link>
+      /* </div> */
     );
   }
 }

@@ -492,7 +492,7 @@ class mealPlanner extends React.Component {
             </div>
             <br />
             <br />
-            <div>
+            {/* <div>
               <Link
                 to={{
                   pathname: "/shopping-list",
@@ -512,7 +512,7 @@ class mealPlanner extends React.Component {
                   Get Shopping List
                 </Button>
               </Link>
-            </div>
+            </div> */}
             <br />
           </Box>
         </Container>
