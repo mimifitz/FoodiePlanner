@@ -451,7 +451,7 @@ class mealPlanner extends React.Component {
                   </Grid>
                   <Grid item xs={3}>
                     <Link to={`/recipe/${this.state.recipes[18].id}`}>
-                      <img
+                      <img width={312} height={231}
                         src={
                           "https://spoonacular.com/recipeImages/" +
                           this.state.recipes[18].id +
@@ -488,30 +488,6 @@ class mealPlanner extends React.Component {
                 </React.Fragment>
               </Grid>
             </div>
-            <br />
-            <br />
-            {/* <div>
-              <Link
-                to={{
-                  pathname: "/shopping-list",
-                  state: {
-                    recipesPlanner: this.state.recipes,
-                  },
-                }}
-                style={{ textDecoration: "none" }}
-              >
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: "rgb(43, 137, 139)",
-                    color: "white",
-                  }}
-                >
-                  Get Shopping List
-                </Button>
-              </Link>
-            </div> */}
-            <br />
           </Box>
         </Container>
       </div >

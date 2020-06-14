@@ -21,9 +21,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-
 import { Link } from "react-router-dom";
-
 export default class LandingPage extends Component {
   constructor(props) {
     super(props);
@@ -32,8 +30,8 @@ export default class LandingPage extends Component {
       eggValue: false,
       dairyValue: false,
       glutenValue: false,
-      excludeIngredientValue: "",
-      cuisineValue: "",
+      excludeIngredientValue: 0,
+      cuisineValue: 0,
       diet: "",
       excludeIngredients: "",
       intolerances: "",
@@ -66,7 +64,17 @@ export default class LandingPage extends Component {
     });
   };
 
-  submit() {
+  checkIntolerances() {
+    if (
+      this.state.eggValue === false &&
+      this.state.dairyValue === false &&
+      this.state.glutenValue === false
+    )
+    {
+      this.setState({
+        intolerances: 0,
+      });
+    }
     if (this.state.eggValue === true)
     {
       this.setState({
@@ -88,7 +96,7 @@ export default class LandingPage extends Component {
     if (this.state.eggValue === true && this.state.dairyValue === true)
     {
       this.setState({
-        intolerances: "egg, dairy",
+        intolerances: "egg,dairy",
       });
     }
     if (
@@ -98,22 +106,25 @@ export default class LandingPage extends Component {
     )
     {
       this.setState({
-        intolerances: "egg, dairy, gluten",
+        intolerances: "egg,dairy,gluten",
       });
     }
     if (this.state.eggValue === true && this.state.glutenValue === true)
     {
       this.setState({
-        intolerances: "egg, gluten",
+        intolerances: "egg,gluten",
       });
     }
     if (this.state.dairyValue === true && this.state.glutenValue === true)
     {
       this.setState({
-        intolerances: "dairy, gluten",
+        intolerances: "dairy,gluten",
       });
     }
-    if (!this.state.excludeIngredientsValue)
+  }
+
+  checkIngredients() {
+    if (this.state.excludeIngredientsValue === 0)
     {
       this.setState({
         excludeIngredients: 0,
@@ -124,7 +135,10 @@ export default class LandingPage extends Component {
         excludeIngredients: this.state.excludeIngredientValue,
       });
     }
-    if (!this.state.excludeCuisineValue)
+  }
+
+  checkCuisine() {
+    if (this.state.excludeCuisineValue === 0)
     {
       this.setState({
         cuisine: 0,
@@ -135,19 +149,42 @@ export default class LandingPage extends Component {
         cuisine: this.state.cuisineValue,
       });
     }
+  }
+
+  async submit() {
+
+    //  await this.checkIngredients();
+    //  await this.checkCuisine();
     this.setState({
       diet: this.state.dietValue,
+      cuisine: this.state.cuisineValue,
+      excludeIngredients: this.state.excludeIngredientValue,
       setOpen: true,
     });
-    fetch(
+    await this.checkIntolerances();
+    await fetch(
       `/recipe/search/${this.state.diet}/${this.state.excludeIngredients}/${this.state.intolerances}/${this.state.cuisine}`
     )
       .then((response) => response.json())
       .then((response) => {
         this.setState({ recipes: response });
       });
+    await this.extraFetch();
   }
 
+  extraFetch() {
+    const array = this.state.recipes.results;
+    if (array.length !== 21)
+    {
+      fetch(
+        `/recipe/search/0/0/0/0`
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          this.setState({ recipes: response });
+        });
+    }
+  }
   addIngredient = () => {
     this.setState({
       ingredients: [...this.state.ingredients, this.state.ingredient],
@@ -166,7 +203,7 @@ export default class LandingPage extends Component {
               <Paper>
                 <Box p={3}>
                   <Typography variant="h4">
-                    Your Meal Planer
+                    Create your weekly meal planner
                   </Typography>
                   <hr />
                   <div>
@@ -350,7 +387,7 @@ export default class LandingPage extends Component {
               <br />
               <Paper>
                 <Box p={3}>
-                  <Typography variant="h4">Recipe Ideas</Typography>
+                  <Typography variant="h4">Get recipe ideas</Typography>
                   <hr />
                   <div>
                     <div>
@@ -361,7 +398,7 @@ export default class LandingPage extends Component {
                               style={{ color: "rgb(33, 48, 55)" }}
                               variant="h6"
                             >
-                              Add Your Ingredients
+                              Add a list of ingredients
                             </Typography>
                           </FormLabel>
                           <br />

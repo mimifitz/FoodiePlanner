@@ -159,6 +159,29 @@ class RecipeInstructions extends React.Component {
                             ))}
                           </Typography>
                         </div>
+                        <br />
+                        <br />
+                        <div>
+                          <Link
+                            to={{
+                              pathname: "/shopping-list",
+                              state: {
+                                recipesPlanner: this.state.recipes,
+                              },
+                            }}
+                            style={{ textDecoration: "none" }}
+                          >
+                            <Button
+                              variant="contained"
+                              style={{
+                                backgroundColor: "rgb(43, 137, 139)",
+                                color: "white",
+                              }}
+                            >
+                              Get Shopping List
+                </Button>
+                          </Link>
+                        </div>
                       </Box>
                     </div>
                   </div>
@@ -168,28 +191,7 @@ class RecipeInstructions extends React.Component {
           </Grid>
         </Container>
 
-        <div>
-          <Link>
-            to={{
-              pathname: "/shopping-list",
-              state: {
-                recipesPlanner: this.state.recipes,
-              },
-            }}
-        style={{ textDecoration: "none" }}
-      >
-        <Button
-              variant="contained"
-              style={{
-                backgroundColor: "rgb(43, 137, 139)",
-                color: "white",
-              }}
-            >
-              Get Shopping List
-                </Button>
-          </Link>
-        </div>
-      </div>
+      </div >
     );
   }
 }
