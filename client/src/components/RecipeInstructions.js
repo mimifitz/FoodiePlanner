@@ -18,6 +18,7 @@ class RecipeInstructions extends React.Component {
     super(props);
     this.state = {
       recipe: {},
+      recipes: this.props.location.state.recipesPlanner.results,
       analyzedInstructions: [],
       ingredients: [],
       summary: "",
