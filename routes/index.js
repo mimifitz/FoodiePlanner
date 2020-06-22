@@ -1,5 +1,5 @@
 var express = require("express");
-var dotenv = require('dotenv').config();
+var dotenv = require("dotenv").config();
 var router = express.Router();
 const fetch = require("node-fetch");
 /* GET home page. */
@@ -20,7 +20,7 @@ router.get("/recipe/:id", function (req, res) {
     .then((data) => {
       res.send(data);
     })
-    .catch((err) => res.send(err));
+    .catch((err) => res.send(NAH));
 });
 
 //RECIPE GENERATOR

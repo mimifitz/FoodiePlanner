@@ -8,7 +8,7 @@ export default class ShoppingList extends Component {
     super(props);
     this.state = {
       loading: true,
-      recipes: this.props.location.state.recipesPlanner,
+      recipes: this.props.location.state.recipesPlanner.results,
       ingredients: [],
       ingredientsArray: [],
       ingredientsObject: {
