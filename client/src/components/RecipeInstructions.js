@@ -5,13 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 // import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+// import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 
 class RecipeInstructions extends React.Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class RecipeInstructions extends React.Component {
                               "https://spoonacular.com/recipeImages/" +
                               this.state.recipe.id +
                               "-480x360.jpg"
-                            }
+                            } alt=""
                           />
                           <div>
                             <br></br>
@@ -141,7 +141,7 @@ class RecipeInstructions extends React.Component {
               <br />
               <Paper>
                 <Box p={3}>
-                  <Typography variant="h4">Ingredients &#128071;</Typography>
+                  <Typography variant="h4">Ingredients <span role="img" aria-label="aliment">&#128071;</span> </Typography>
                   <hr />
                   <div>
                     <div>
@@ -151,7 +151,7 @@ class RecipeInstructions extends React.Component {
                             {this.state.ingredients.map((ingredient, index) => (
                               <div key={index}>
                                 <ul>
-                                  &#10004;&nbsp;&nbsp;
+                                  <span role="img" aria-label="unit">&#10004;&nbsp;&nbsp;</span>
                                   {ingredient.amount.metric.value}{" "}
                                   {ingredient.amount.metric.unit}{" "}
                                   <b>{ingredient.name}</b>

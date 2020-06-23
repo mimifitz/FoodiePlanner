@@ -29,9 +29,6 @@ class mealPlanner extends React.Component {
   }
 
 
-
-
-
   render() {
     return (
       <div>
@@ -47,7 +44,7 @@ class mealPlanner extends React.Component {
               <Grid
                 container
                 spacing={10}
-                container
+                // container
                 direction="row"
                 justify="space-between"
                 alignItems="center"
@@ -78,7 +75,6 @@ class mealPlanner extends React.Component {
                         style={{
                           backgroundColor: "rgb(248, 183, 53)",
                           color: "black",
-                          // font-size: "16px",
                           textAlign: "center",
                         }}
                       >
@@ -102,8 +98,8 @@ class mealPlanner extends React.Component {
                 </Grid>
                 <Grid
                   container
-                  spacing={12}
-                  container
+                  spacing={10}
+                  // container
                   direction="column"
                   justify="flex-start"
                   alignItems="flex-start"
@@ -127,20 +123,27 @@ class mealPlanner extends React.Component {
                       </Paper>
                     </Grid>
                     <Grid item xs={3}>
-                      <Link to={{
-                        pathname: `/recipe/${this.state.recipes[0].id}`,
-                        state: {
-                          recipesPlanner: this.state.recipes,
-                        },
-                      }}
+                      <Link to=
+                        {{
+                          pathname: `/recipe/${this.state.recipes[0].id}`,
+                          state: {
+                            recipesPlanner: this.state.recipes,
+                          },
+                        }}
+                      // {this.state.recipes.map((recipe, index) => (
+                      //   <div key={index}></div>
+
+                      // ))}
+
                       >
+
                         <img
                           src={
                             "https://spoonacular.com/recipeImages/" +
                             this.state.recipes[0].id +
                             "-312x231." +
                             this.state.imgExt[0]
-                          }
+                          } alt=""
                         />
                       </Link>
                     </Grid>
@@ -158,7 +161,7 @@ class mealPlanner extends React.Component {
                             this.state.recipes[1].id +
                             "-312x231." +
                             this.state.imgExt[1]
-                          }
+                          } alt=""
                         />
                       </Link>
                     </Grid>
@@ -176,7 +179,7 @@ class mealPlanner extends React.Component {
                             this.state.recipes[2].id +
                             "-312x231." +
                             this.state.imgExt[2]
-                          }
+                          } alt=""
                         />
                       </Link>
                     </Grid>
@@ -214,7 +217,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[3].id +
                           "-312x231." +
                           this.state.imgExt[3]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -232,7 +235,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[4].id +
                           "-312x231." +
                           this.state.imgExt[4]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -250,7 +253,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[5].id +
                           "-312x231." +
                           this.state.imgExt[5]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -286,13 +289,14 @@ class mealPlanner extends React.Component {
                           this.state.recipes[6].id +
                           "-312x231." +
                           this.state.imgExt[6]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
                   <Grid item xs={3}>
                     <Link to={{
                       pathname: `/recipe/${this.state.recipes[7].id}`,
+                      // recipes.map(recipe, recipes)
                       state: {
                         recipesPlanner: this.state.recipes,
                       },
@@ -304,7 +308,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[7].id +
                           "-312x231." +
                           this.state.imgExt[7]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -322,7 +326,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[8].id +
                           "-312x231." +
                           this.state.imgExt[8]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -359,7 +363,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[9].id +
                           "-312x231." +
                           this.state.imgExt[9]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -378,7 +382,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[10].id +
                           "-312x231." +
                           this.state.imgExt[10]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -396,7 +400,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[11].id +
                           "-312x231." +
                           this.state.imgExt[11]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -432,7 +436,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[12].id +
                           "-312x231." +
                           this.state.imgExt[12]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -447,10 +451,10 @@ class mealPlanner extends React.Component {
                       <img
                         src={
                           "https://spoonacular.com/recipeImages/" +
-                          this.state.recipes[14].id +
+                          this.state.recipes[13].id +
                           "-312x231." +
-                          this.state.imgExt[14]
-                        }
+                          this.state.imgExt[13]
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -465,10 +469,10 @@ class mealPlanner extends React.Component {
                       <img
                         src={
                           "https://spoonacular.com/recipeImages/" +
-                          this.state.recipes[13].id +
+                          this.state.recipes[14].id +
                           "-312x231." +
-                          this.state.imgExt[13]
-                        }
+                          this.state.imgExt[14]
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -505,7 +509,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[15].id +
                           "-312x231." +
                           this.state.imgExt[15]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -523,7 +527,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[16].id +
                           "-312x231." +
                           this.state.imgExt[16]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -541,7 +545,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[17].id +
                           "-312x231." +
                           this.state.imgExt[17]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -571,13 +575,13 @@ class mealPlanner extends React.Component {
                       },
                     }}
                     >
-                      <img width={312} height={231}
+                      <img
                         src={
                           "https://spoonacular.com/recipeImages/" +
                           this.state.recipes[18].id +
                           "-312x231." +
                           this.state.imgExt[18]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -595,7 +599,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[19].id +
                           "-312x231." +
                           this.state.imgExt[19]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>
@@ -613,7 +617,7 @@ class mealPlanner extends React.Component {
                           this.state.recipes[20].id +
                           "-312x231." +
                           this.state.imgExt[20]
-                        }
+                        } alt=""
                       />
                     </Link>
                   </Grid>

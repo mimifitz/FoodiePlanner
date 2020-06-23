@@ -90,23 +90,23 @@ export default class ShoppingList extends Component {
                   <Typography variant="h4">Shopping List</Typography>
                 </Box>
                 <Box p={3}>
-                  {this.state.updatedIngredientsArray.map((ingredient, index) => {
-                    return (
+                  {this.state.updatedIngredientsArray.map((ingredient, index) =>
+                    (
                       <div key={index}>
                         <h4>{ingredient.name}</h4>
                         <img
                           src={
                             "https://spoonacular.com/cdn/ingredients_100x100/" +
                             ingredient.image
-                          }
+                          } alt="ingredient"
                         />
                         <p>
                           {ingredient.amount.value} {ingredient.amount.unit}
                         </p>
                         <br />
                       </div>
-                    );
-                  })}
+                    )
+                  )}
                 ;
               </Box>
               </div>

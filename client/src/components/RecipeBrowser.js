@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 import ShareIcon from "@material-ui/icons/Share";
@@ -39,14 +39,14 @@ class RecipeBrowser extends React.Component {
           <Box p={1}>
             <div>
               <br></br>
-              <Typography variant="h4">Choose your recipe &#128073;</Typography>
+              <Typography variant="h4">Choose your recipe <span role="img" aria-label="hand">&#128073;</span> </Typography>
             </div>
           </Box>
           <Grid
             container
-            container
+            // container
             spacing={3}
-            container
+            // container
             direction="row"
             justify="space-evenly"
             alignItems="center"
@@ -67,7 +67,7 @@ class RecipeBrowser extends React.Component {
                           "https://spoonacular.com/recipeImages/" +
                           recipe.id +
                           "-480x360.jpg"
-                        }
+                        } alt="recipe"
                       />
                     </Link>
                     <CardContent>
