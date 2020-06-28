@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var recipesRouter = require('./routes/recipes');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -20,7 +20,7 @@ app.get("/", function (req, res, next) {
   res.send("Welcome to the FOODIEPLANNER backend");
 });
 
-app.use('/', indexRouter);
+app.use('/', recipesRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

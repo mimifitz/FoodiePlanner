@@ -2,9 +2,10 @@ var express = require("express");
 var dotenv = require("dotenv").config();
 var router = express.Router();
 const fetch = require("node-fetch");
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.send("index", { title: "Express" });
+  res.send("recipes", { title: "Express" });
 });
 
 const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;
