@@ -23,10 +23,6 @@ const useStyles = makeStyles({
 });
 
 
-// let createRow = (day, weekDay, breakfast, lunch, dinner) => {
-//     return { day, weekDay, breakfast, lunch, dinner };
-// }
-
 let createRow = (day, weekDay, meals) => {
     return { day, weekDay, meals };
 }
@@ -79,20 +75,20 @@ const MealPlanner = (props) => {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell align="center">Breakfast</TableCell>
-                            <TableCell align="center">Lunch</TableCell>
-                            <TableCell align="center">Dinner</TableCell>
+                            <TableCell align="center"></TableCell>
+                            {mealType.map((type, index) => (
+                                <TableCell style={{ width: "28%" }} key={index} align="center">{type}</TableCell>
+                            ))}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
                             <TableRow key={row.weekDay}>
-                                <TableCell component="th" scope="row">
+                                <TableCell align="center" component="th" scope="row">
                                     {row.weekDay}
                                 </TableCell>
                                 {row.meals.map((meal, index) =>
-                                    <TableCell style={{ width: "28%" }} key={index}>
+                                    <TableCell align="center" style={{ width: "20%" }} key={index}>
                                         <RecipeImage recipe={meal}></RecipeImage>
                                     </TableCell>
                                 )

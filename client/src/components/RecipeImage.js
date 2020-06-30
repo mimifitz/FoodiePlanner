@@ -22,7 +22,7 @@ class recipeImage extends React.Component {
                     {{
                         pathname: `/recipe/${this.props.recipe.title}}`,
                     }}>
-                    <img width="240" height="150"
+                    <img align="center" width="240" height="150"
                         src={
                             "https://spoonacular.com/recipeImages/" +
                             this.props.recipe.id +
