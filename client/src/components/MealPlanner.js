@@ -23,21 +23,29 @@ const useStyles = makeStyles({
 });
 
 
-let createRow = (weekDay, breakfast, lunch, dinner) => {
-    return { weekDay, breakfast, lunch, dinner };
+let createRow = (day, weekDay, breakfast, lunch, dinner) => {
+    return { day, weekDay, breakfast, lunch, dinner };
 }
 
 let rows = [];
+const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const mealType = ["Breakfast", "Lunch", "Dinner"];
 
 const MealPlanner = (props) => {
     const [isLoading, setLoaing] = useState(true);
     const classes = useStyles();
     let { mealPlan } = props.location.state;
-    const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     let generateRows = () => {
         for (let i = 0; i < weekDays.length; i++)
         {
-            rows.push(createRow(weekDays[i], "Breakfast", "Lunch", "Dinner"));
+
+            let dayPlan = mealPlan.filter(meal => (meal.day === i + 1))
+            for (let j = 0; j < mealType.length; j++)
+            {
+                rows.push(createRow(i + 1, weekDays[i], dayPlan));
+
+            }
+
 
         }
         console.log(rows)
@@ -53,9 +61,9 @@ const MealPlanner = (props) => {
                     <TableHead>
                         <TableRow>
                             <TableCell></TableCell>
-                            <TableCell align="right">Breakfast</TableCell>
-                            <TableCell align="right">Lunch</TableCell>
-                            <TableCell align="right">Dinner</TableCell>
+                            <TableCell align="center">Breakfast</TableCell>
+                            <TableCell align="center">Lunch</TableCell>
+                            <TableCell align="center">Dinner</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -64,9 +72,17 @@ const MealPlanner = (props) => {
                                 <TableCell component="th" scope="row">
                                     {row.weekDay}
                                 </TableCell>
-                                <TableCell align="right">{row.breakfast}</TableCell>
-                                <TableCell align="right">{row.lunch}</TableCell>
-                                <TableCell align="right">{row.dinner}</TableCell>
+                                <TableCell align="right"><Link to={{
+                                    // pathname: `/recipe/${id}`,
+                                    pathname: `/recipe/149251`,
+                                }}
+                                >
+                                    <img
+                                        src={
+                                            "https://spoonacular.com/recipeImages/149251-312x231.jpg"
+                                        } alt=""
+                                    />
+                                </Link></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
