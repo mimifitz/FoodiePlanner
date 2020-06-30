@@ -15,23 +15,22 @@ class recipeImage extends React.Component {
 
     render() {
         return (
-
-            <Link to=
-                {{
-                    pathname: `/recipe/${this.props.recipe.id}`,
-                    state: {
-                        recipesPlanner: this.props.recipes,
-                    },
-                }}>
-                <img
-                    src={
-                        "https://spoonacular.com/recipeImages/" +
-                        this.props.recipe.id +
-                        "-312x231." +
-                        this.props.imgExt
-                    } alt=""
-                />
-            </Link>
+            <React.Fragment>
+                {this.props.recipe.title}
+                <br></br>
+                <Link to=
+                    {{
+                        pathname: `/recipe/${this.props.recipe.title}}`,
+                    }}>
+                    <img width="240" height="150"
+                        src={
+                            "https://spoonacular.com/recipeImages/" +
+                            this.props.recipe.id +
+                            "-240x150.jpg"
+                        } alt=""
+                    />
+                </Link>
+            </React.Fragment>
         )
     }
 }

@@ -23,8 +23,12 @@ const useStyles = makeStyles({
 });
 
 
-let createRow = (day, weekDay, breakfast, lunch, dinner) => {
-    return { day, weekDay, breakfast, lunch, dinner };
+// let createRow = (day, weekDay, breakfast, lunch, dinner) => {
+//     return { day, weekDay, breakfast, lunch, dinner };
+// }
+
+let createRow = (day, weekDay, meals) => {
+    return { day, weekDay, meals };
 }
 
 let rows = [];
@@ -32,19 +36,34 @@ const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 const mealType = ["Breakfast", "Lunch", "Dinner"];
 
 const MealPlanner = (props) => {
-    const [isLoading, setLoaing] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     const classes = useStyles();
     let { mealPlan } = props.location.state;
+    // console.log(mealPlan)
+
     let generateRows = () => {
         for (let i = 0; i < weekDays.length; i++)
         {
-
-            let dayPlan = mealPlan.filter(meal => (meal.day === i + 1))
-            for (let j = 0; j < mealType.length; j++)
+            let dayPlan = mealPlan.filter(meal => (meal.day === i + 1));
+            let meals = [];
+            for (let s = 1; s <= 3; s++)
             {
-                rows.push(createRow(i + 1, weekDays[i], dayPlan));
-
+                let meal = JSON.parse(dayPlan.find(meal => meal.slot === s).value);
+                meal.slot = s;
+                meals.push(meal);
             }
+            console.log("meals array");
+            console.log(meals)
+
+            // let breakfastCell = {};
+            // breakfastCell.title = breakfast.title;
+            // breakfastCell.src = "https://spoonacular.com/recipeImages/" +
+            //     breakfast.id +
+            //     "-312x231." +
+            //     breakfast.imageType;
+            // breakfastCell.pathname = `/recipe/${breakfast.id}`;
+
+            rows.push(createRow(i + 1, weekDays[i], meals));
 
 
         }
@@ -52,7 +71,7 @@ const MealPlanner = (props) => {
     }
 
     useEffect(() => { generateRows() }, [mealPlan]);
-    useEffect(() => { setLoaing(false) }, [rows]);
+    useEffect(() => { setLoading(false) }, [rows]);
 
     return (
         isLoading ? <div>"NO DATA"</div> :
@@ -72,17 +91,12 @@ const MealPlanner = (props) => {
                                 <TableCell component="th" scope="row">
                                     {row.weekDay}
                                 </TableCell>
-                                <TableCell align="right"><Link to={{
-                                    // pathname: `/recipe/${id}`,
-                                    pathname: `/recipe/149251`,
-                                }}
-                                >
-                                    <img
-                                        src={
-                                            "https://spoonacular.com/recipeImages/149251-312x231.jpg"
-                                        } alt=""
-                                    />
-                                </Link></TableCell>
+                                {row.meals.map((meal, index) =>
+                                    <TableCell style={{ width: "28%" }} key={index}>
+                                        <RecipeImage recipe={meal}></RecipeImage>
+                                    </TableCell>
+                                )
+                                }
                             </TableRow>
                         ))}
                     </TableBody>
