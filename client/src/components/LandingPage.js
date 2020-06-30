@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -21,7 +22,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 // import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { Link } from "react-router-dom";
+
+
 export default class LandingPage extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +42,12 @@ export default class LandingPage extends Component {
       setOpen: false,
       ingredient: "",
       ingredients: [],
+      mealPlan: [],
+      intolerances: ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood", "Sesame", "Shellfish", "Soy", "Sulfite", "Tree Nut", "Wheat"],
+      cuisines: ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European",
+        "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern",
+        "Nordic", "Southern", "Spanish", "Thai", "Vietnames"],
+      diets: ["Whole30", "Primal", "Paleo", "Pescetarian", "Vegan", "Ovo-Vegetarian", "Lacto-Vegetarian", "Vegetarian", "Ketogenic", "Gluten Free"]
     };
   }
 
@@ -96,7 +104,7 @@ export default class LandingPage extends Component {
     if (this.state.eggValue === true && this.state.dairyValue === true)
     {
       this.setState({
-        intolerances: "egg,dairy",
+        intolerances: "egg/dairy",
       });
     }
     if (
@@ -106,19 +114,19 @@ export default class LandingPage extends Component {
     )
     {
       this.setState({
-        intolerances: "egg,dairy,gluten",
+        intolerances: "egg/dairy/gluten",
       });
     }
     if (this.state.eggValue === true && this.state.glutenValue === true)
     {
       this.setState({
-        intolerances: "egg,gluten",
+        intolerances: "egg/gluten",
       });
     }
     if (this.state.dairyValue === true && this.state.glutenValue === true)
     {
       this.setState({
-        intolerances: "dairy,gluten",
+        intolerances: "dairy/gluten",
       });
     }
   }
@@ -150,6 +158,17 @@ export default class LandingPage extends Component {
       });
     }
   }
+  async fetchMealPlan() {
+    await fetch(
+      `/recipe/search/${this.state.diet}/${this.state.excludeIngredients}`
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        this.setState({ mealPlan: response });
+      });
+  }
+
 
   async submit() {
 
@@ -162,15 +181,18 @@ export default class LandingPage extends Component {
       setOpen: true,
     });
     await this.checkIntolerances();
-    await fetch(
-      `/recipe/search/${this.state.diet}/${this.state.excludeIngredients}/${this.state.intolerances}/${this.state.cuisine}`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        this.setState({ recipes: response });
-      });
-    await this.extraFetch();
+    this.fetchMealPlan();
+
+
+    // await fetch(
+    //   `/recipe/search/${this.state.diet}/${this.state.excludeIngredients}/${this.state.intolerances}/${this.state.cuisine}`
+    // )
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     console.log(response);
+    //     this.setState({ recipes: response });
+    //   });
+    // await this.extraFetch();
   }
 
   extraFetch() {
@@ -186,13 +208,17 @@ export default class LandingPage extends Component {
         });
     }
   }
+
+
   addIngredient = () => {
     this.setState({
       ingredients: [...this.state.ingredients, this.state.ingredient],
     });
   };
 
+
   render() {
+    let { mealPlan } = this.state;
     return (
       <div>
         <img width="100%" src="/dishes.jpg" alt="" />
@@ -487,6 +513,7 @@ export default class LandingPage extends Component {
                   pathname: "/meal-planner",
                   state: {
                     recipesPlanner: this.state.recipes,
+                    mealPlan
                   },
                 }}
                 style={{ textDecoration: "none" }}

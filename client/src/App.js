@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import "typeface-roboto";
 import LandingPage from "./components/LandingPage";
+// import MealPlanner from "./components/MealPlannerOld";
 import MealPlanner from "./components/MealPlanner";
 import ShoppingList from "./components/ShoppingList";
 import RecipeInstructions from "./components/RecipeInstructions";

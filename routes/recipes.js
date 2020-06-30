@@ -58,19 +58,41 @@ router.get("/recipe/:id/ingredientWidgetHTML", function (req, res) {
     .catch((err) => res.send(err));
 });
 
-//MEAL PLANNER
+// //MEAL PLANNER
+// router.get(
+//   "/recipe/search/:diet/:excludeIngredients/:intolerances/:cuisine",
+//   function (req, res) {
+//     fetch(
+//       `https://api.spoonacular.com/recipes/search?diet=${req.params.diet}&excludeIngredients=${req.params.excludeIngredients}&intolerances=${req.params.intolerances}&cuisine=${req.params.cuisine}&number=21&apiKey=${OCD_API_KEY}`
+//     )
+//       .then((res) => res.json())
+//       .then((data) => {
+//         res.send(data);
+//       })
+//       .catch((err) => res.send(err));
+//   }
+// );
+
+//MEAL PLANNER (REFACTORED)
 router.get(
-  "/recipe/search/:diet/:excludeIngredients/:intolerances/:cuisine",
+  "/recipe/search/:diet/:excludeIngredients/",
   function (req, res) {
+    let { diet, excludeIngredients, } = req.params;
     fetch(
-      `https://api.spoonacular.com/recipes/search?diet=${req.params.diet}&excludeIngredients=${req.params.excludeIngredients}&intolerances=${req.params.intolerances}&cuisine=${req.params.cuisine}&number=21&apiKey=${OCD_API_KEY}`
+      `https://api.spoonacular.com/recipes/mealplans/generate?timeFrame=week&diet=${diet}&exclude=${excludeIngredients}&apiKey=${OCD_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
         res.send(data);
+        console.log(data)
       })
-      .catch((err) => res.send(err));
+      .catch((err) => {
+        res.send(err);
+        console.log(error)
+      });
   }
 );
+
+
 
 module.exports = router;
