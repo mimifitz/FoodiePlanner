@@ -8,10 +8,14 @@ class recipeImage extends React.Component {
         this.state = {
             recipes: this.props.recipes,
             recipe: this.props.recipe,
-            imgExt: this.props.imgExt
-
         };
     }
+
+    // componentDidMount() {
+
+    //     console.log("MY PROPS")
+    //     console.log(this.props)
+    // }
 
     render() {
         return (
@@ -20,7 +24,10 @@ class recipeImage extends React.Component {
                 <br></br>
                 <Link to=
                     {{
-                        pathname: `/recipe/${this.props.recipe.title}}`,
+                        pathname: `/recipe/${this.props.recipe.id}`,
+                        state: {
+                            recipesPlanner: this.state.recipes,
+                        },
                     }}>
                     <img align="center" width="240" height="150"
                         src={

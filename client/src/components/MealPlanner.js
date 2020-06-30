@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link, withRouter } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
 import RecipeImage from "./RecipeImage"
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -34,8 +29,10 @@ const mealType = ["Breakfast", "Lunch", "Dinner"];
 const MealPlanner = (props) => {
     const [isLoading, setLoading] = useState(true);
     const classes = useStyles();
+    // const location = useLocation();
     let { mealPlan } = props.location.state;
-    // console.log(mealPlan)
+    let recipes = props.location.state.recipesPlanner;
+
 
     let generateRows = () => {
         for (let i = 0; i < weekDays.length; i++)
@@ -48,24 +45,13 @@ const MealPlanner = (props) => {
                 meal.slot = s;
                 meals.push(meal);
             }
-            console.log("meals array");
-            console.log(meals)
-
-            // let breakfastCell = {};
-            // breakfastCell.title = breakfast.title;
-            // breakfastCell.src = "https://spoonacular.com/recipeImages/" +
-            //     breakfast.id +
-            //     "-312x231." +
-            //     breakfast.imageType;
-            // breakfastCell.pathname = `/recipe/${breakfast.id}`;
-
+            // console.log("meals array");
+            // console.log(meals)
             rows.push(createRow(i + 1, weekDays[i], meals));
-
-
         }
-        console.log(rows)
     }
 
+    useEffect(() => { console.log(props.location) }, []);
     useEffect(() => { generateRows() }, [mealPlan]);
     useEffect(() => { setLoading(false) }, [rows]);
 
@@ -89,7 +75,7 @@ const MealPlanner = (props) => {
                                 </TableCell>
                                 {row.meals.map((meal, index) =>
                                     <TableCell align="center" style={{ width: "20%" }} key={index}>
-                                        <RecipeImage recipe={meal}></RecipeImage>
+                                        <RecipeImage recipes={recipes} recipe={meal}></RecipeImage>
                                     </TableCell>
                                 )
                                 }

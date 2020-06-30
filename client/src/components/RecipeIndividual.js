@@ -11,41 +11,51 @@ import Box from "@material-ui/core/Box";
 // import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
+import { withRouter } from "react-router-dom"
 // import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 
-class RecipeInstructions extends React.Component {
+class RecipeIndividual extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       recipe: {},
-      recipes: this.props.location.state.recipesPlanner.results,
+      // recipes: this.props.location.state.recipesPlanner.results,
       analyzedInstructions: [],
       ingredients: [],
       summary: "",
     };
   }
 
+
   componentDidMount() {
-    this.fetchRecipes();
+    console.log("MY PROPS")
+    console.log(this.props.match.params.id)
+  }
+
+  componentDidMount() {
+    this.fetchRecipe();
     this.fetchIngredients();
   }
+
 
   fetchIngredients() {
     fetch(`/recipe/${this.props.match.params.id}/ingredientWidget`)
       .then((response) => response.json())
       .then((response) => {
         this.setState({ ingredients: response.ingredients });
+        console.log("response.ingredients")
+        console.log(response)
       });
   }
 
-  fetchRecipes() {
+  fetchRecipe() {
     fetch(`/recipe/${this.props.match.params.id}`)
       .then((response) => response.json())
       .then((response) => {
         this.setState({ recipe: response });
 
         let steps = [];
-        if (this.state.recipe.analyzedInstructions[0])
+        if (this.state.recipe.analyzedInstructions)
         {
           let arrayOfSteps = this.state.recipe.analyzedInstructions[0].steps;
           for (let i = 0; i < arrayOfSteps.length; i++)
@@ -197,4 +207,4 @@ class RecipeInstructions extends React.Component {
   }
 }
 
-export default RecipeInstructions;
+export default withRouter(RecipeIndividual);
